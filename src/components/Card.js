@@ -15,7 +15,7 @@ export default function ShopCard(props) {
           component="img"
           height="200"
           image={props.poster}
-          alt="green iguana"
+          alt="fruit"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
