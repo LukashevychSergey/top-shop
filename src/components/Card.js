@@ -1,0 +1,39 @@
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+
+export default function ShopCard(props) {
+  return (
+    <Grid item xs={6} lg={3}>
+      <Card sx={{ maxWidth: 345, ml: 8, mt: 3 }}>
+        <CardMedia
+          component="img"
+          height="200"
+          image={props.poster}
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {props.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Fruits are an excellent source of essential vitamins and minerals,
+            and they are high in fiber. Fruits also provide a wide range of
+            health-boosting antioxidants, including flavonoids. Eating a diet
+            high in fruits and vegetables can reduce a person's risk of
+            developing heart disease, cancer, inflammation, and diabetes.
+          </Typography>
+          <Typography variant="p">Price : {props.price}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Buy Now</Button>
+        </CardActions>
+      </Card>
+    </Grid>
+  );
+}
