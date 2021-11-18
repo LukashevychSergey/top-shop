@@ -7,13 +7,8 @@ const CardList = (props) => {
 
   return (
     <Grid container spacing={0}>
-      {goods.map((item) => (
-        <ShopCard
-          key={item.id}
-          name={item.name}
-          price={item.price}
-          poster={item.poster}
-        />
+      {goods.map((good) => (
+        <ShopCard key={good.id} good={good} />
       ))}
     </Grid>
   );
