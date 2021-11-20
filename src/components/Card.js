@@ -7,12 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { ShopContext } from './ShopProvider';
+import { observer } from '../helpers';
 
 export default function ShopCard({ good }) {
   const { buyGood } = useContext(ShopContext);
 
   const handleBuy = () => {
     buyGood(good);
+    observer.emit('BUY');
   };
 
   return (

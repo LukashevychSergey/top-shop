@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,8 +7,15 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import { ShopContext } from './ShopProvider';
+import { observer } from '../helpers';
 
 export default function Header() {
+  useEffect(() => {
+    observer.addListener('BUY', () => {
+      console.log(1);
+    });
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
