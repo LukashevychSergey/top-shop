@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,10 +10,13 @@ import { ShopContext } from './ShopProvider';
 import { observer } from '../helpers';
 
 export default function Header() {
+  const { goods } = useContext(ShopContext);
+
   useEffect(() => {
     observer.addListener('BUY', () => {
       console.log(1);
     });
+    return observer.removeListener('BUY');
   }, []);
 
   return (
@@ -23,21 +26,18 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             FruitShop
           </Typography>
-          <ShopContext.Consumer>
-            {(state) => (
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <Badge badgeContent={state.goods.length} color="primary">
-                  <ShoppingCartOutlinedIcon />
-                </Badge>
-              </IconButton>
-            )}
-          </ShopContext.Consumer>
+
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <Badge badgeContent={goods.length} color="primary">
+              <ShoppingCartOutlinedIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
