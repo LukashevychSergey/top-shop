@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import * as types from '../store/types';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -6,15 +7,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { ShopContext } from './ShopProvider';
 import { observer } from '../helpers';
 
 export default function ShopCard({ good }) {
-  const { buyGood } = useContext(ShopContext);
+  const dispatch = useDispatch();
 
   const handleBuy = () => {
-    buyGood(good);
     observer.emit('BUY');
+    dispatch({ type: types.BUY_GOOD, payload: good });
   };
 
   return (

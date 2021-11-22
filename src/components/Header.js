@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,10 +7,11 @@ import Typography from '@mui/material/Typography';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import { ShopContext } from './ShopProvider';
 import { observer } from '../helpers';
 
 export default function Header() {
+  const state = useSelector((state) => state);
+  console.log(state);
   useEffect(() => {
     observer.addListener('BUY', () => {
       console.log(1);
@@ -23,21 +25,18 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             FruitShop
           </Typography>
-          <ShopContext.Consumer>
-            {(state) => (
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <Badge badgeContent={state.goods.length} color="primary">
-                  <ShoppingCartOutlinedIcon />
-                </Badge>
-              </IconButton>
-            )}
-          </ShopContext.Consumer>
+
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <Badge badgeContent={state.goods.length} color="primary">
+              <ShoppingCartOutlinedIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
