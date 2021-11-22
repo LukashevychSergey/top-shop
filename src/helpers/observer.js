@@ -5,11 +5,13 @@ export const observer = {
     listeners[type] = (listeners[type] || []).concat(listener);
   },
   emit(type) {
-    Object.keys(listeners[type])?.forEach((listener) => {
+    listeners[type]?.forEach((listener) => {
       listener();
     });
   },
-  removeListener(type) {
-    listeners[type] = delete listeners[type];
+  removeListener(type, removedListener) {
+    listeners[type] = listeners[type]?.filter((listener) => {
+      return listener !== removedListener;
+    });
   },
 };

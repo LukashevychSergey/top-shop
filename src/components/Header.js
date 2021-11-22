@@ -13,10 +13,15 @@ export default function Header() {
   const { goods } = useContext(ShopContext);
 
   useEffect(() => {
-    observer.addListener('BUY', () => {
+    const listener = () => {
       console.log(1);
-    });
-    return observer.removeListener('BUY');
+    };
+
+    observer.addListener('BUY', listener);
+
+    return () => {
+      observer.removeListener('BUY', listener);
+    };
   }, []);
 
   return (
